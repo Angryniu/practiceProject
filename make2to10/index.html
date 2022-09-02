@@ -6,7 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    span{
+        display: block;
+        color: red;
+    }
+</style>
 <body>
+    <!-- 
+        作者：angruniu
+        项目介绍：用户输入8个以内的2进制数，输出10进制
+     -->
     
+     <input type="text" id="number">
+     <input type="button" value="开始进行进制转换" id="btn">
+     <!-- 这里作信息提示 -->
+     <span id="tip"></span>
+     <script>
+        let number = document.querySelector('#number');
+        let btn = document.querySelector('#btn');
+        let tip = document.querySelector('#tip')
+        function make2to10(number1){
+            let arr = [...number1].reverse();
+            let sum = 0;
+            let j=8;
+            for(let i = 0 ; i<arr.length ; i++){
+                sum += Math.pow(2,i)*arr[i];
+            }
+            number.value = sum;
+        }
+        number.addEventListener('input',function(e){
+            let value = e.srcElement.value;
+            let find1 = value.indexOf('1');
+            let find0 = value.indexOf('0');
+            if(find0==-1 || find1==-1){
+                
+            }
+        })
+        btn.addEventListener('click',function(){
+            make2to10(number.value)
+        })
+     </script>
 </body>
 </html>
