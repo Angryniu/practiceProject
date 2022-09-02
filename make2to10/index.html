@@ -6,12 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<style>
-    span{
-        display: block;
-        color: red;
-    }
-</style>
 <body>
     <!-- 
         作者：angruniu
@@ -20,8 +14,6 @@
     
      <input type="text" id="number">
      <input type="button" value="开始进行进制转换" id="btn">
-     <!-- 这里作信息提示 -->
-     <span id="tip"></span>
      <script>
         let number = document.querySelector('#number');
         let btn = document.querySelector('#btn');
@@ -35,12 +27,13 @@
             }
             number.value = sum;
         }
+        // 这里有点问题，input改变一下，会触发两次
         number.addEventListener('input',function(e){
-            let value = e.srcElement.value;
-            let find1 = value.indexOf('1');
-            let find0 = value.indexOf('0');
-            if(find0==-1 || find1==-1){
-                
+            let value = e.srcElement.value.split('');
+            let i = value[value.length-1];
+            if(i!=1&&i!=0){
+                number.value=value.slice(0,value.length-1)
+                alert('请填入1或0');
             }
         })
         btn.addEventListener('click',function(){
