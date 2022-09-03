@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue3.js"></script>
+</head>
+<style>
+    .title{
+        text-align: center;
+    }
+    .main{
+        position: relative;
+    }
+    #textarea{
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 100px;
+        resize:none;
+        display: block;
+        border: 1px solid black;
+        text-align: center;
+    }
+    .ctr{
+        width: 25px;
+        position: absolute;
+    }
+    .int1{
+        left: 550px;
+        top: 0px;
+    }
+    .int2{
+        left: 935px;
+        top: 0px;
+    }
+    .int3{
+        left: 550px;
+        top: 270px;
+    }
+    .int4{
+        left: 935px;
+        top: 270px;
+        
+    }
+</style>
+<body>
+    <div id="app">
+        <h1 class="title">{{title}}</h1>
+        <div class="main">
+            <textarea name="mytextarea" id="textarea" cols="40" rows="20" disabled :style="textareaStyle">
+                {{textareaStyle}}
+            </textarea>
+            <input type="text" class="ctr int1" v-model="bordersize">
+            <input type="text" class="ctr int2" v-model="bordersize">
+            <input type="text" class="ctr int3" v-model="bordersize">
+            <input type="text" class="ctr int4" v-model="bordersize">
+        </div>
+    </div>
+    <script>
+        const { createApp } = Vue
+        
+        createApp({
+          data() {
+            return {
+              title: 'My-Border-Radius!',
+              inter:[0,0,0,0],
+              bordersize:0,
+              textareaStyle:{
+                borderRadius:"0px"
+              }
+            }
+          },
+          watch: {
+            bordersize:{
+                handler(n,o){
+                    console.log(n)
+                    this.textareaStyle={
+                        borderRadius:n+'px'
+                    }
+                },
+                deep:true,
+                immediate:true
+            }
+          }
+
+        }).mount('#app')
+      </script>
+</body>
+</html>
